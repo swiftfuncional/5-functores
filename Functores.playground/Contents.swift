@@ -6,7 +6,7 @@ enum Optional<T> {
 }
 
 let configuration = "{" +
-	"\"name\":\"Alex\"," +
+	"\"asdf\":\"Alex\"," +
 	"\"accountType\":\"Premium\"," +
 	"\"email\":\"alex@swiftfuncional.com\"," +
 	"\"url\":\"www.swiftfuncional.com\"," +
@@ -33,3 +33,4 @@ func show(account: Account) {
 }
 
 show(account: parse(json: configuration))
+
