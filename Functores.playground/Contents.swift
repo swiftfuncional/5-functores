@@ -3,6 +3,15 @@ import Foundation
 enum Optional<T> {
 	case None
 	case Some(_: T)
+
+	func map<S>(_ transform: (T) -> (S)) -> Optional<S> {
+		switch self {
+		case .None:
+			return .None
+		case let .Some(t):
+			return .Some(transform(t))
+		}
+	}
 }
 
 let configuration = "{" +
@@ -37,12 +46,4 @@ func show(account: Account) {
 	print(account)
 }
 
-let optionalAccount = parse(json: configuration)
-
-switch optionalAccount {
-case .None:
-	print("ERROR: Wrong JSON")
-case let .Some(account):
-	show(account: account)
-}
-
+parse(json: configuration).map(show)
