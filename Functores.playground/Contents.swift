@@ -27,3 +27,9 @@ func parse(json: String) -> Account {
 	               email: dict["email"] as! String,
 	               url: dict["url"] as! String)
 }
+
+func show(account: Account) {
+	print(account)
+}
+
+show(account: parse(json: configuration))
