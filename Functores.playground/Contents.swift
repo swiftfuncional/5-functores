@@ -6,7 +6,7 @@ enum Optional<T> {
 }
 
 let configuration = "{" +
-	"\"asdf\":\"Alex\"," +
+	"\"name\":\"Alex\"," +
 	"\"accountType\":\"Premium\"," +
 	"\"email\":\"alex@swiftfuncional.com\"," +
 	"\"url\":\"www.swiftfuncional.com\"," +
@@ -19,18 +19,30 @@ struct Account {
 	let url: String
 }
 
-func parse(json: String) -> Account {
-	let dict = try! JSONSerialization.jsonObject(with: json.data(using: .utf8)!) as! [String: Any]
+func parse(json: String) -> Optional<Account> {
+	guard let data = json.data(using: .utf8),
+		let dict = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
+		let name = dict?["name"] as? String,
+		let accountType = dict?["accountType"] as? String,
+		let email = dict?["email"] as? String,
+		let url = dict?["url"] as? String else {
 
-	return Account(name: dict["name"] as! String,
-	               accountType: dict["accountType"] as! String,
-	               email: dict["email"] as! String,
-	               url: dict["url"] as! String)
+			return .None
+	}
+
+	return .Some(Account(name: name, accountType: accountType, email: email, url: url))
 }
 
 func show(account: Account) {
 	print(account)
 }
 
-show(account: parse(json: configuration))
+let optionalAccount = parse(json: configuration)
+
+switch optionalAccount {
+case .None:
+	print("ERROR: Wrong JSON")
+case let .Some(account):
+	show(account: account)
+}
 
