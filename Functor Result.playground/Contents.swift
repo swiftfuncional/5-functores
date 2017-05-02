@@ -35,3 +35,7 @@ enum Error {
 func mustBeInt(_ string: String) -> Result<Int, Error> {
 	return Int(string).map { .Success($0) } ?? .Failure(.MustBeInt)
 }
+
+mustBeInt("10")
+mustBeInt("5")
+mustBeInt("swift")
