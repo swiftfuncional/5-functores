@@ -6,3 +6,10 @@ func |> <T, U, V>(first: @escaping (T) -> U, second: @escaping (U) -> V) -> (T) 
 	}
 }
 
+func add2(to number: Int) -> Int {
+	return number + 2
+}
+
+func double(of number: Int) -> Int {
+	return number * 2
+}
