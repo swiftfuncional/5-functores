@@ -13,3 +13,6 @@ func add2(to number: Int) -> Int {
 func double(of number: Int) -> Int {
 	return number * 2
 }
+
+Array(1...10).map(add2 |> double)
+Array(1...10).map(add2).map(double)
