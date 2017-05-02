@@ -31,4 +31,7 @@ func double(of number: Int) -> Int {
 enum Error {
 	case MustBeInt
 }
+
+func mustBeInt(_ string: String) -> Result<Int, Error> {
+	return Int(string).map { .Success($0) } ?? .Failure(.MustBeInt)
 }
