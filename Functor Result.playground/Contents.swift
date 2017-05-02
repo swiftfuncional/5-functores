@@ -27,3 +27,8 @@ func add2(to number: Int) -> Int {
 func double(of number: Int) -> Int {
 	return number * 2
 }
+
+enum Error {
+	case MustBeInt
+}
+}
