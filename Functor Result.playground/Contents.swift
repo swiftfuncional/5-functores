@@ -37,6 +37,6 @@ func mustBeInt(_ string: String) -> Result<Int, Error> {
 }
 
 mustBeInt("10").map(add2)
-mustBeInt("5").map(double)
+print(mustBeInt("5").map { $0 })
 mustBeInt("swift").map(add2)
 
